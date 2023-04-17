@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Item from "../Item";
 
@@ -7,10 +7,26 @@ interface IListProps {
 }
 
 const List = ({ items }: IListProps) => {
+  const [todos, setTodos] = useState(items);
+  const handleClickItem = (e: Event, index: number) => {
+    e.preventDefault();
+    const updatedTodos = todos.map((todo, i) =>
+      i === index ? { ...todo, done: !todo.done } : todo
+    );
+    setTodos(updatedTodos);
+  };
   return (
     <S.List>
-      {items.map(({ text, done = false }, i) => {
-        return <Item key={"todo" + i} text={text} done={done} />;
+      {todos.map(({ text, done = false }, i) => {
+        return (
+          <Item
+            key={"todo" + i}
+            index={i}
+            text={text}
+            done={done}
+            onClick={handleClickItem}
+          />
+        );
       })}
     </S.List>
   );
