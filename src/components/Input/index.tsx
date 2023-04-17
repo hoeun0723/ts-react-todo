@@ -1,20 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import * as S from "./style";
+
+import useAddTodo from "../../hooks/useAddTodo";
 
 const Input = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [content, setContent] = useState("");
+  const [value, setValue] = useState("");
+  const addTodo = useAddTodo();
 
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setContent(value);
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
 
-  const handleClickSubmit = () => {};
+  const handleClickSubmit = () => {
+    addTodo(value);
+    setValue("");
+  };
   return (
     <S.Container>
-      <S.Input ref={inputRef} onChange={handleChangeInput} />
-      <S.Button disabled={!content} onClick={handleClickSubmit}>
+      <S.Input ref={inputRef} value={value} onChange={handleChangeInput} />
+      <S.Button disabled={!value} onClick={handleClickSubmit}>
         등록
       </S.Button>
     </S.Container>
