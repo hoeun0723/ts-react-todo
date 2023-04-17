@@ -16,6 +16,7 @@ const Item = ({ index, text, done, onClick }: IItemProps) => {
         <S.CheckBox checked={done} readOnly={true} />
         <S.CheckMark />
       </S.Text>
+      <S.Button>&times;</S.Button>
     </S.Item>
   );
 };
