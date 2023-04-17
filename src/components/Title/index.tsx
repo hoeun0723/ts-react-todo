@@ -1,7 +1,8 @@
 import React from "react";
+import * as Styled from "./style";
 
 const Title = () => {
-  return <h1>My Todo</h1>;
+  return <Styled.Title>TodoList</Styled.Title>;
 };
 
 export default Title;
