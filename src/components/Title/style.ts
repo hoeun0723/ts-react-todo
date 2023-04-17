@@ -4,6 +4,6 @@ const Title = styled.header`
   height: 10%;
   font-size: 2.5rem;
   font-weight: 900;
-  color: white;
+  color: black;
 `;
 export { Title };
