@@ -11,7 +11,11 @@ const initialState: TodoState = [
 const todos = createReducer<TodoState, TodoAction>(initialState, {
   [ADD_TODO]: (state, { payload: text }) => [
     ...state,
-    { id: Math.max(...state.map((todo) => todo.id)) + 1, text, done: false },
+    {
+      id: !state.length ? 1 : Math.max(...state.map((todo) => todo.id)) + 1,
+      text,
+      done: false,
+    },
   ],
   [TOGGLE_TODO]: (state, { payload: id }) =>
     state.map((todo) =>
